@@ -1,35 +1,43 @@
 <template>
- <div class="container">
+ <div class="container registerForm">
     <div class="title">Registration</div>
     <div class="content">
       <form action="#">
         <div class="user-details">
           <div class="input-box">
             <span class="details">First name</span>
-            <input type="text" placeholder="Enter your first name" required>
+            <input type="text" v-model="firstName" placeholder="Enter your first name" required>
           </div>
           <div class="input-box">
             <span class="details">Last name</span>
-            <input type="text" placeholder="Enter your last name" required>
+            <input type="text" v-model="lastName" placeholder="Enter your last name" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Date of birth</span>
+            <input type="date" v-model="dateOfBirth" placeholder="dd/mm/yyyy" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Country</span>
+            <input type="text" v-model="country" placeholder="Enter your country" required>
           </div>
           <div class="input-box">
             <span class="details">Email</span>
-            <input type="text" placeholder="Enter your email" required>
+            <input type="text" v-model="email" placeholder="Enter your email" required>
           </div>
           <div class="input-box">
-            <span class="details">Phone Number</span>
-            <input type="text" placeholder="Enter your number" required>
+            <span class="details">Address</span>
+            <input type="text" v-model="address" placeholder="Enter your address" required>
           </div>
           <div class="input-box">
             <span class="details">Password</span>
-            <input type="text" placeholder="Enter your password" required>
+            <input type="password" v-model="password" placeholder="Enter your password" required>
           </div>
           <div class="input-box">
             <span class="details">Confirm Password</span>
-            <input type="text" placeholder="Confirm your password" required>
+            <input type="password" placeholder="Confirm your password" required>
           </div>
         </div>
-        <div class="gender-details">
+        <!-- <div class="gender-details">
           <input type="radio" name="gender" id="dot-1">
           <input type="radio" name="gender" id="dot-2">
           <input type="radio" name="gender" id="dot-3">
@@ -48,9 +56,9 @@
             <span class="gender">Prefer not to say</span>
             </label>
           </div>
-        </div>
+        </div> -->
         <div class="button">
-          <input type="submit" value="Register">
+          <input type="button" value="Register" @click="signUp">
         </div>
       </form>
     </div>
@@ -58,6 +66,57 @@
 </template>
 
 <script>
+import axios from 'axios'
+
+export default{
+  name : "RegisterForm",
+  data(){
+    return {
+      firstName: "",
+      lastName:"",
+      country:"",
+      address:"",
+      dateOfBirth: "",
+      email:"",
+      password:"",      
+    }
+  },
+  methods:{
+    signUp(){
+      let URL="http://localhost:5168/api/user/signup"
+      console.log("Valor de firstName es: " + this.firstName)
+      let user = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        country: this.country,
+        address: this.address,
+        dateOfBirth: this.dateOfBirth,
+        email: this.email,
+        password: this.password
+      }
+      axios.post(URL,user)
+        .then(response=>{
+          console.log("La respuesta de signup es: " + JSON.stringify(response))
+
+          this.$q.notify({
+            message: "Registro exitoso",
+            color: "positive",
+            position: "bottom",
+            timeout: 5000
+          })
+          this.$router.push("/")
+        }).catch(error => {
+          console.log("El error es: " + JSON.stringify(error))
+          this.$q.notify({
+            message: "Ocurrió un error...",
+            color: "negative",
+            position: "top",
+            timeout: 5000
+          })
+        })
+    }
+  }
+}
 </script>
 
 <style>
@@ -68,7 +127,7 @@
   box-sizing: border-box;
   font-family: 'Poppins',sans-serif;
 }
-body{
+.registerForm{
   height: 100vh;
   display: flex;
   justify-content: center;
