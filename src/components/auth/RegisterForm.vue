@@ -104,7 +104,7 @@ export default{
             position: "bottom",
             timeout: 5000
           })
-          this.$router.push("/")
+          this.$router.push("/login")
         }).catch(error => {
           console.log("El error es: " + JSON.stringify(error))
           this.$q.notify({
