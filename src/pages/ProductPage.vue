@@ -4,7 +4,7 @@
       <ProductFilter />
     </div>
     <div class="product-list q-mr-md">
-      Aquí va el Product List
+      <ProductList />
     </div>
   </div>
 </template>
@@ -25,11 +25,13 @@
 <script>
 
 import ProductFilter from 'src/components/product/ProductFilter.vue'
+import ProductList from 'src/components/product/ProductList.vue';
 
 export default {
   name: "ProductPage",
   components: {
-    ProductFilter
+    ProductFilter,
+    ProductList
   }
 }
 
