@@ -1,6 +1,6 @@
-# Store Web Vue (store-web-dpa)
+# NASA (PracticaDAW04)
 
-Store Web Vue
+NASA
 
 ## Install the dependencies
 ```bash

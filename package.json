@@ -1,8 +1,8 @@
 {
-  "name": "store-web-dpa",
+  "name": "PracticaDAW04",
   "version": "0.0.1",
-  "description": "Store Web Vue",
-  "productName": "Store Web Vue",
+  "description": "NASA",
+  "productName": "NASA",
   "author": "Luis Chang <luis.chang@outlook.com>",
   "private": true,
   "scripts": {
